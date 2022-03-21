@@ -26,12 +26,13 @@ router.get('/', async (req, res) =>{
         dogs = await Dog.findAll({
             where: { 
                 name:{
-                    [Op.like]: name
+                    [Op.substring]: name.toLowerCase().replace(/\b\w/g, l => l.toUpperCase())
                 },
             },
             include:Temperaments,
         });
     }
+    console.log({dogs});
     dogs.forEach(dog => {
         data.push({
             id : dog.dataValues.id,
@@ -39,7 +40,8 @@ router.get('/', async (req, res) =>{
             height: {metric: dog.dataValues.height},
             weight: {metric: dog.dataValues.weight},
             life_span: dog.dataValues.life_span,
-            temperaments : dog.Temperaments.map(t => t.dataValues.name).join(', '),
+            temperaments : dog.temperaments.map(t => t.dataValues.name).join(', '),
+            img: dog.dataValues.img
         })
     });
 
@@ -55,7 +57,11 @@ router.get('/', async (req, res) =>{
             })
             .then(() => {
                 if(!data.length) throw new Error('Doggos not found');
-                res.json(data)
+                res.json(data.sort((a, b) => {
+                    if(a.name > b.name) return 1;
+                    if(a.name < b.name) return -1;
+                    return 0;
+                }))
             })
             .catch((error) => {
                 res.status(404).send(error.message);
@@ -70,7 +76,11 @@ router.get('/', async (req, res) =>{
             })
             .then(() => {
                 if(!data.length) throw new Error('Doggos not found');
-                res.json(data) // Enviar lo que se encontro en la api y DB
+                res.json(data.sort((a, b) => {   // Enviar lo que se encontro en la api y DB
+                    if(a.name > b.name) return 1;
+                    if(a.name < b.name) return -1;
+                    return 0;
+                })) 
             })
             .catch((error) => {
                 res.status(404).send(error.message);
@@ -85,32 +95,41 @@ router.get('/:idRaza', async (req, res) => {
     if(idRaza.includes('-')){
         //TODO: buscar en la DB y si lo encuentra mandarlo
         //Try catch 
-        const dog = await Dog.findOne({
-            where: {
-                id: idRaza,
-            },
-            include: Temperaments,
-        },console.log('Holaaaa'));
-        if(dog){
-            data = {
-                id : dog.dataValues.id,
-                name : dog.dataValues.name, 
-                height: {metric: dog.dataValues.height},
-                weight: {metric: dog.dataValues.weight},
-                life_span: dog.dataValues.life_span,
-                temperaments : dog.Temperaments.map(t => t.dataValues.name).join(', '),
-            }
-            res.json(data)
-            }
+        try{
+            const dog = await Dog.findOne({
+                where: {
+                    id: idRaza,
+                },
+                include: Temperaments,
+            });
+            console.log(dog.dataValues)
+            if(dog){
+                data = {
+                    id : dog.dataValues.id,
+                    name : dog.dataValues.name, 
+                    height: {metric: dog.dataValues.height},
+                    weight: {metric: dog.dataValues.weight},
+                    life_span: dog.dataValues.life_span,
+                    temperaments : dog.dataValues.temperaments.map(t => t.dataValues.name).join(', '),
+                }
+                if(Object.getOwnPropertyNames(data).length === 0) throw new Error('Doggo not found');
+                res.json(data)
+                }
+        }catch(error){
+            res.status(404).send(error.message);
+        }
+        
     }else{ 
         //TODO: Si no lo encontro en la base de datos, hay que buscarlo en la API 
         
         axios.get('https://api.thedogapi.com/v1/breeds')
             .then(response => {
-                res.json(response.data.find(dog => dog.id === parseInt(idRaza)))
+                let sendResponse = response.data.find(dog => dog.id === parseInt(idRaza))
+                if(!sendResponse) throw new Error('Doggo not found');
+                res.json(sendResponse)
             })
             .catch((error) => {
-                res.status(400).json({ msg: 'Doggo not found'} );
+                res.status(404).send(error.message);
             })
     }
 })
