@@ -22,10 +22,11 @@ router.get ('/' , async (req, res) => {
             
             const temperaments = new Set(temperamentsArray);
             const result = [...temperaments]
+
             
 
             await Promise.all(
-                result.map(t => {
+                result.sort().map(t => {
                     Temperaments.create({
                         name: t
                     })

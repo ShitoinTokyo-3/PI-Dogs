@@ -1,0 +1,6 @@
+export const NOT_FOUND ='NOT_FOUND'
+export const PRELOADED ='PRELOADED'
+export const DETAILS_DOG ='DETAILS_DOG'
+export const ORDER_BY ='ORDER_BY'
+export const FILTER_BY_TEMPERAMENTS ='FILTER_BY_TEMPERAMENTS'
+export const FILTER_BY_ORIGIN ='FILTER_BY_ORIGIN'

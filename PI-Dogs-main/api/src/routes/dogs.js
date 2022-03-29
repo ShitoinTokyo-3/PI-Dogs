@@ -32,7 +32,6 @@ router.get('/', async (req, res) =>{
             include:Temperaments,
         });
     }
-    console.log({dogs});
     dogs.forEach(dog => {
         data.push({
             id : dog.dataValues.id,
@@ -40,8 +39,8 @@ router.get('/', async (req, res) =>{
             height: {metric: dog.dataValues.height},
             weight: {metric: dog.dataValues.weight},
             life_span: dog.dataValues.life_span,
-            temperaments : dog.temperaments.map(t => t.dataValues.name).join(', '),
-            img: dog.dataValues.img
+            temperament : dog.temperaments.map(t => t.dataValues.name).join(', '),
+            image: {url: dog.dataValues.img}
         })
     });
 
@@ -110,13 +109,14 @@ router.get('/:idRaza', async (req, res) => {
                     height: {metric: dog.dataValues.height},
                     weight: {metric: dog.dataValues.weight},
                     life_span: dog.dataValues.life_span,
-                    temperaments : dog.dataValues.temperaments.map(t => t.dataValues.name).join(', '),
+                    temperament : dog.dataValues.temperaments.map(t => t.dataValues.name).join(', '),
+                    image : {url: dog.dataValues.img}
                 }
                 if(Object.getOwnPropertyNames(data).length === 0) throw new Error('Doggo not found');
                 res.json(data)
                 }
         }catch(error){
-            res.status(404).send(error.message);
+            res.status(404).send('Doggo not found');
         }
         
     }else{ 

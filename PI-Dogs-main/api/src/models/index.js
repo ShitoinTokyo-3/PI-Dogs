@@ -27,7 +27,7 @@ module.exports = (sequelize) => {
     },
     img:{
       type:DataTypes.STRING,
-      defaultValue: 'https://c.tenor.com/1mRsobYzxEoAAAAC/corgi-excited.gif'
+      defaultValue: 'https://c.tenor.com/oNklQuZAJVQAAAAC/pug-puglie.gif'
     }
   });
 
