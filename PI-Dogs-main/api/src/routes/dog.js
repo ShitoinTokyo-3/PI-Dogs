@@ -28,7 +28,19 @@ router.post('/', async (req, res) => {
         console.log(error.message);
         res.status(400).json(error.message)
     }
+    // if(!name, !heightMin, !heightMax, !weightMin, !weightMax) throw new Error('name , height , weightMin , weightMax are required')
 
+    // Dog.create({
+    //             name: name.trim().toLowerCase().replace(/\b\w/g, l => l.toUpperCase()),
+    //             height: `${heightMin.trim()} - ${heightMax.trim()}`,
+    //             weight: `${weightMin.trim()} - ${weightMax.trim()}`,
+    //             life_span: life_span.trim()
+    //         })
+    //         .then(response => {
+    //             response.addTemperaments(temperaments)
+    //             res.json('done')
+    //         })
+    //         .catch(err => res.status(400).json(error.message))
 
 })
 
