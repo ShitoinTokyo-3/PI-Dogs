@@ -34,7 +34,8 @@ export default function AddDog() {
         heightMin: "",
         heightMax: "",
         life_span: "",
-        temperaments: []
+        temperaments: [],
+        dogUnique: null
     });
 
     const [formValid, setFormValid] = useState(null);
@@ -57,7 +58,7 @@ export default function AddDog() {
         }
     }
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
         if (inputCon.validName === true &&
             inputCon.weightMin !== "" &&
@@ -66,19 +67,27 @@ export default function AddDog() {
             inputCon.heightMax !== "" &&
             inputCon.life_span !== "" &&
             inputCon.temperaments.length > 0) {
-                
-                addDog(inputCon);
-                setInputCon({
-                    name: "", validName: null,
-                    weightMin: "",
-                    weightMax: "",
-                    heightMin: "",
-                    heightMax: "",
-                    life_span: "",
-                    temperaments: [], validTemperaments: null,
-                })
-                setFormValid(true);
-                e.target.reset();
+                // PromiseResult
+                addDog(inputCon)
+                    .then(result =>{ 
+                        if(result === 'llave duplicada viola restricción de unicidad «dogs_name_key»'){
+                            setInputCon({...inputCon, dogUnique: false})
+                        }else{
+                            setInputCon({...inputCon, dogUnique: true})
+                            setInputCon({
+                                name: "", validName: null,
+                                weightMin: "",
+                                weightMax: "",
+                                heightMin: "",
+                                heightMax: "",
+                                life_span: "",
+                                temperaments: []
+                            })
+                            setFormValid(true);
+                            e.target.reset();
+                        }
+                    })
+
         }else{
             setFormValid(false);
         }
@@ -205,6 +214,10 @@ export default function AddDog() {
 
                     {formValid === false && <MessageError>
                         <p><b>Error:</b>Please fill in the form correctly</p>
+                    </MessageError>}
+
+                    {inputCon.dogUnique === false && <MessageError>
+                        <p><b>Error:</b>The breed already exists</p>
                     </MessageError>}
                     <ConteinerButton>
                         <Button type="submit">Submit</Button>

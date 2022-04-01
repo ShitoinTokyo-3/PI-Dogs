@@ -10,7 +10,6 @@ import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import Loading from './Loading/Loading';
 
 
-
 export default function Main(props){
     let dispach = useDispatch();
     let render = useSelector(state => state.render);
@@ -30,8 +29,8 @@ export default function Main(props){
                 currentPage: currentPage.currentPage - 1
             })
         };
-        if(value === 'next' && currentPage.currentPage !== render.length / 8){
-            if(filter.length > 0 && currentPage.currentPage === filter.length / 8){
+        if(value === 'next' && currentPage.currentPage !== Math.ceil(render.length / 8)){
+            if(filter.length > 0 && currentPage.currentPage === Math.ceil(filter.length / 8)){
                 return;
             }
             setCurrentPage({
@@ -58,7 +57,8 @@ let toggleRender =
     <div>
         <Cards dogs={renderDogs}/>
         <Pagination configPages={configPages} page={currentPage} />
-    </div>: <Loading />
+    </div>: 
+    <Loading />
 
     return (
         <div>

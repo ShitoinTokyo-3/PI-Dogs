@@ -1,0 +1,121 @@
+
+.nav{
+    display:flex;
+    background: #0C0C0C;
+    padding: 0;
+    margin: 0;
+    justify-content: space-between;
+    height: 5.5em;
+}
+.nav a{
+    border-bottom:  6px double #FFFFFF;
+    align-self: center;
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 1.3em;
+    font-weight: bold;
+    padding: 0.5em;
+    border-radius: 6px;
+    margin-right: 40px;
+}
+
+.container_flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 850px;
+    background-image: url('./IMG/img1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.container h1 {
+    font-size: 5em;
+    font-family: 'Verdana';
+    font-weight: 700;
+    margin-bottom: 200px;
+}
+
+.container_info{
+    min-width: 600px;
+    background-color: #fff;
+    border-radius: 20px;
+    border: 0.2rem solid #e7e6e4;
+    box-shadow: 0 0.2rem 0 0 #e7e6e4, 0 0.6rem 1.5rem 0 rgb(42 40 37 / 20%);
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row-reverse;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.8rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #2a2825;
+}
+
+.info h2{
+    border-bottom: 4px solid #363432;
+    border-radius: 5px;
+}
+.containerButton{
+    align-content: center;
+    justify-content: center;
+    display: grid;
+}
+.button {
+    border: 3px solid rgba(100,100,100,.1);
+    margin-bottom: 15px;
+    padding: 15px;
+    width: 200px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+    background-size: 300%;
+    background-image: linear-gradient(to left, #315095,#274077,#315095);
+    transition: .6s;
+}
+
+.button:hover{
+    background-position: right;
+    box-shadow: #0C0C0C 0 0.5rem 1rem 0;
+}
+
+.titulo{
+    display:block;
+    font-family: monospace;
+    font-size: 9em;
+    font-weight: bolder;
+    margin-bottom: 200px;
+    white-space: nowrap;
+    border-right: 4px solid;
+    width: 7ch;
+
+    animation: typing 2s steps(7),
+    blink .5s infinite step-end alternate;
+    overflow: hidden;
+}
+
+@keyframes typing {
+    from { width: 0; }
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}

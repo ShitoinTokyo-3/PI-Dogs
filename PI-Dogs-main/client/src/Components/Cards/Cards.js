@@ -1,10 +1,10 @@
 import Card from './Card/Card';
 import React from 'react';
-// import './Cards.css';
+import style from './Cards.module.css';
 
 export default function Cards(props){
     return (
-        <div >
+        <div className={style.container}>
             {props.dogs.map(dog =>
              <Card 
              key={dog.id}

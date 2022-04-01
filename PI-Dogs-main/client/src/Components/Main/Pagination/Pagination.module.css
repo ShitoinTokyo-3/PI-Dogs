@@ -1,0 +1,76 @@
+.container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 15px;
+    border-top: 1px solid #ccc;
+}
+.miniContainer button{
+    position: relative;
+    padding: 10px 15px;
+    border: none;
+    outline: none;
+    background:#dcc2e4 ;
+    color: #350642;
+    cursor: pointer;
+    transition: .5s;
+    overflow: hidden;
+    font-size: 25px;
+    border-radius: 5px; 
+}
+.miniContainer button:hover{
+    color: #fff;
+}
+.miniContainer button span{
+    position: absolute;
+    background: #000;
+    transition: .5s;
+}
+
+.miniContainer button span:nth-child(1){
+    width: 100%;
+    height: 1px;
+    top:0;
+    left:-100%;
+}
+
+.miniContainer button span:nth-child(2){
+    width: 100%;
+    height: 1px;
+    bottom:0;
+    right:-100%;
+}
+.miniContainer button span:nth-child(3){
+    width: 1px;
+    height: 100%;
+    bottom: -100%;
+    left: 0;
+}
+.miniContainer button span:nth-child(4){
+    width: 1px;
+    height: 100%;
+    top: -100%;
+    right: 0;
+}
+
+.miniContainer button:hover span:nth-child(1){
+    left: 0;
+}
+.miniContainer button:hover span:nth-child(2){
+    right: 0;
+}
+.miniContainer button:hover span:nth-child(3){
+    bottom: 0;
+}
+.miniContainer button:hover span:nth-child(4){
+    top: 0;
+}
+
+.miniContainer label{
+    font-size: 20px;
+    letter-spacing: 1px;
+    padding: 10px;
+}

@@ -5,6 +5,7 @@ import SecondNav from "../NavDeAndCr/Nav";
 import { getDetails } from "../../Redux/Actions";
 import Loading from "../Main/Loading/Loading"
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
+import s from "./DogDetails.module.css";
 
 export default function DogDetails() {
     const dispatch = useDispatch();
@@ -17,30 +18,74 @@ export default function DogDetails() {
     } ,[]);
 
     return (
-        <div className="container">
+        <div>
             <SecondNav />
             {Object.entries(dog).length === 0 ? <Loading /> :
-            <div className="">
-                {console.log(dog)}
-                <div className="">
-                    <img src={dog.image.url} alt={dog.name}  />
+            <div className={s.container}>
+                <div className={s.container1}>
+                    <img src={dog.image.url} alt={dog.name}/>
+                    <h2>{dog.name}</h2>
                 </div>
-                <div className="">
-                    <h1>{dog.name}</h1>
-                    <label htmlFor="Wmin">Weight min: </label>
-                    <p name={'Wmin'} id= {'Wmin'}> {dog.weight.metric.split(' - ')[0]}</p>
-                    <label htmlFor="Wmax">Weight max: </label>
-                    <p name={'Wmax'} id= {'Wmax'}>{dog.weight.metric.split(' - ')[1]}</p>
-                    <label htmlFor="Hmin">Height min: </label>
-                    <p name={'Hmin'} id= {'Hmin'}>{dog.height.metric.split(' - ')[0]}</p>
-                    <label htmlFor="Hmax">Height max: </label>
-                    <p name={'Hmax'} id= {'Hmax'}>{dog.height.metric.split(' - ')[1]}</p>
-                    <label htmlFor="LS">Life span: </label>
-                    <p name={'LS'} id= {'LS'}>{dog.life_span} years</p>
-                    <label htmlFor="T">Temperaments: </label>
-                    <p name={'T'} id= {'T'}>{dog.temperament}</p>
+
+                <div className={s.container2}>
+                    <div className={s.container2_h2}>
+                        <h2>{dog.name}</h2>
+                    </div>
+                    <div className={s.containerInfo}>
+                        <div className={s.containerInfo_label}>
+                            <label >Weight </label>
+                        </div>
+                        <div className={s.containerInfo_m}>
+                            <div className={s.containerInfo_m}>
+                                <span>min: </span>
+                                <span>{dog.weight.metric.split(' - ')[0]}</span>
+                            </div>
+                            <div className={s.containerInfo_m}>
+                                <span>max: </span>
+                                <span>{dog.weight.metric.split(' - ')[1]}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={s.containerInfo}>
+                        <div  className={s.containerInfo_label}>
+                            <label >Height </label>
+                        </div>
+                        <div className={s.containerInfo_m}>
+                            <div className={s.containerInfo_m}>
+                                <span>min: </span>
+                                <span>{dog.height.metric.split(' - ')[0]}</span>
+                            </div>
+                            <div className={s.containerInfo_m}>
+                                <span>max: </span>
+                                <span>{dog.height.metric.split(' - ')[1]}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={s.containerInfo}>
+                        <div  className={s.containerInfo_label}>
+                            <label >Life span </label>
+                        </div>
+                        <div className={s.containerInfo_m}>
+                            <div className={s.containerInfo_m}>
+                                <span>min: </span>
+                                <span>{dog.life_span.split(' - ')[0]}</span>
+                            </div>
+                            <div className={s.containerInfo_m}>
+                                <span>max: </span>
+                                <span>{dog.life_span.split(' - ')[1]}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={s.temps}>
+                        <div>
+                            <label >Temperaments: </label>
+                        </div>
+                        <div>
+                            <span>{dog.temperament}</span>
+                        </div>
+                    </div>
                 </div>
-            </div>         
+            </div>          
             }
             {dog === 'Doggo not found' ? <NotFoundPage/> : null} 
         </div>  

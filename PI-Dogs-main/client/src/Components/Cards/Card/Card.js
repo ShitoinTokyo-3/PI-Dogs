@@ -1,30 +1,30 @@
 import {Link} from 'react-router-dom';
+import style from './Card.module.css';
 
 export default function Card(props) {
   return (
-    <div className="card">
-        <div className="front">
-            <h2>{props.name}</h2>
-            <div className="card-image">
-                <img src={props.image} alt={props.name} />
-            </div>
-        </div>
-        <div className="back">
-            <div className="card-content">
-                <h3>{props.name}</h3>
-                <div className=''>
-                    <label>Temperament: </label>
-                    <p>{props.temperament}</p>
-                </div>
-                <div className=''>
-                    <label>Weight: </label>
-                    <p>{props.weight}</p>
-                </div>
-                <Link to={`/dogs/${props.id}`}>
-                    <div className=''>
-                        <button>Ver mas...</button>
+    <div className={style.container}>
+        <div className={style.containerBig}>
+            <Link to={`/dogs/${props.id}`}>
+                <div >
+                    <div className={style.container_Img}>
+                        <img src={props.image} alt={props.name} />
                     </div>
-                </Link>
+                    <div className={style.container_name}>
+                        <span>{props.name}</span>
+                    </div>
+                </div>
+            </Link>
+        </div>
+        <div className={style.containerBig2}>
+            <div className={style.container_weight}>
+                <span><span>Weight: </span>min {props.weight.split(' - ')[0]} - max {props.weight.split(' - ')[1]}</span>
+            </div>
+            <div className={style.container_temps}>
+                <label>Temps: </label>
+                <div>
+                    <span>{props.temperament}</span>
+                </div>
             </div>
         </div>
     </div>

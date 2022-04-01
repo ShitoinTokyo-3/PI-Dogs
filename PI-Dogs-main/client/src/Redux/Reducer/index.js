@@ -98,6 +98,14 @@ const rootReducer = (state = initialState, action) => {
                 }
             };
         case FILTER_BY_ORIGIN:
+            if(action.payload === 'ALL'){
+                console.log(state.render)
+                return {
+                    ...state,
+                    filter: state.render,
+                    notFound: false,
+                }
+            }
             if(action.payload === 'API'){
                 return {
                     ...state,

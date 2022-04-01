@@ -1,0 +1,90 @@
+.container{
+    display: flex;
+    width: 80%;
+    margin: auto;
+}
+
+.container1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 45%;
+    
+}
+
+.container1 img {
+    width: 80%;
+    margin-top: 40px;
+    border-radius: 30px;
+}
+
+.container1 h2 {
+    margin-top: 20px;
+    color:#fff;
+    font-size: 2.5em;
+    font-weight: 700;
+    padding: 10px;
+    background-color: black;
+    border-radius: 10px;
+    
+}
+
+.container2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 55%;
+    
+}
+.container2_h2{
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #fff;
+}
+.container2_h2 h2{
+    padding: 10px;
+    background-color: black;
+    border-radius: 10px;
+}
+
+.containerInfo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.containerInfo_label{
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #000;
+    margin:10px 40px;
+}
+
+.containerInfo_m{
+    margin: 10px;
+}
+.containerInfo_m span:nth-child(1){
+    font-size: 20px;
+    font-weight: bolder;
+    letter-spacing: 1px;
+}
+
+.temps{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.temps div{
+    margin: 10px;
+}
+.temps div label{
+    font-size: 20px;
+    font-weight: bolder;
+    letter-spacing: 1px;
+}
+.temps div span{
+    font-size: 18px;
+    letter-spacing: 1px;
+}

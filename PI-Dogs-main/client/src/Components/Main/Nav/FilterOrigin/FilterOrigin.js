@@ -1,23 +1,38 @@
 import { useDispatch } from "react-redux";
 import { filterByOrigin } from "../../../../Redux/Actions";
+import style from "./FilterOrigin.module.css";
 
 export default function FilterOrigin(props) {
   const dispatch = useDispatch();
 
   return (
-    <div>
-      <select
-        name="origin"
-        id="origin"
-        onChange={(e) => {
-          dispatch(filterByOrigin(e.target.value));
+    <div className={style.container}>
+      <button 
+        onClick={(e) => {
+          dispatch(filterByOrigin("ALL"));
           props.configPages('restart');
-          }
-        }
+        }}
       >
-        <option value="API">API</option>
-        <option value="DB">DataBase</option>
-      </select>
+        <span></span>All
+      </button>
+
+      <button 
+        onClick={(e) => {
+          dispatch(filterByOrigin("API"));
+          props.configPages('restart');
+        }}
+      >
+        <span></span>API
+      </button>
+
+      <button 
+        onClick={(e) => {
+          dispatch(filterByOrigin("DB"));
+          props.configPages('restart');
+        }}
+      >
+        <span></span>DataBase
+      </button>
     </div>
   );
 }

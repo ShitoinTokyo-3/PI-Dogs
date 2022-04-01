@@ -61,7 +61,7 @@ export function filterByOrigin(origin) {
     return {type: FILTER_BY_ORIGIN, payload: origin}
 }
 
-export function addDog(data){
+export function addDogg  (data){
     fetch("http://localhost:3001/dog", {
         method: "post",
         headers: {
@@ -72,4 +72,24 @@ export function addDog(data){
     })
     .catch(err => console.log(err));
 }
+
+export const addDog = async (data) => {
+    try {
+        const response = await fetch("http://localhost:3001/dog", {
+            method: "post",
+            headers: {
+                Accept: "application/json, text/plain, */*",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
+        const json = await response.json();
+        return json;
+    } catch (error) {
+        console.log(error);
+    }
+  
+}
+
+
 

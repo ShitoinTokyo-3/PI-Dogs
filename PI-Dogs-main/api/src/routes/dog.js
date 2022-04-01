@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
     try {
         if(!name, !heightMin, !heightMax, !weightMin, !weightMax) throw new Error('name , height , weightMin , weightMax are required');
 
-        const doggo = await Dog.create({ 
+        const doggo = await Dog.create({
             name: name.trim().toLowerCase().replace(/\b\w/g, l => l.toUpperCase()),
             height: `${heightMin.trim()} - ${heightMax.trim()}`,
             weight: `${weightMin.trim()} - ${weightMax.trim()}`,
@@ -22,10 +22,11 @@ router.post('/', async (req, res) => {
         await doggo.addTemperaments(temperaments);
 
 
-        res.send('done')
+        res.json('done')
 
     } catch (error) {
-        res.status(400).send(error.message)
+        console.log(error.message);
+        res.status(400).json(error.message)
     }
 
 

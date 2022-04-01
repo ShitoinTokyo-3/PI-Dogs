@@ -1,0 +1,45 @@
+.container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 15px;
+}
+
+.container h1{
+    font-size: 70px;
+    font-weight: bold;
+    color: #350642;
+}
+
+.animation{
+    display:flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 0 auto;
+}
+.animation > span{
+    width: 1rem;
+    height: 1rem;
+    margin: 3rem .5rem;
+    border-radius: 50%;
+    background-color: #350642;
+    animation: loader-animation .6s infinite alternate;
+}
+
+@keyframes loader-animation {
+    to{
+        opacity: .1;
+        transform: translate3d(0,-1rem,0);
+    }
+}
+
+.animation > span:nth-child(2){
+    animation-delay: .2s;
+}
+.animation > span:nth-child(3){
+    animation-delay: .4s;
+}

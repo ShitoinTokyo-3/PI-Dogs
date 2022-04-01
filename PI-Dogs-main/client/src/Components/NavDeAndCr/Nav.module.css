@@ -1,0 +1,31 @@
+nav{
+    border: 1px solid #000;
+    width: 100%;
+    display: flex;
+    background-color: #000000;
+    margin-bottom: 100px;
+}
+
+.container1{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container1_Logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container1_Logo img{
+    width: 88px;
+    height: 88px;
+    border-radius: 5px;
+}
+.container1_h2{
+    font-family: 'Verdana';
+    text-decoration: none;
+    margin-left: 20px;
+    color: #fff;
+}
