@@ -1,46 +1,45 @@
+import axios from 'axios';
 import {NOT_FOUND, PRELOADED, DETAILS_DOG,
      ORDER_BY, FILTER_BY_TEMPERAMENTS, FILTER_BY_ORIGIN} from './nameCase'
+
 export function getDogs(name){
     let data = {};
     if(name === undefined) name = '';
     return function  (dispatch){
-        return fetch(`http://localhost:3001/dogs?name=${name}`)
-            .then(response => response.json())
-            .then(response => {
-                if(typeof response === 'object'){
+        return axios.get(`/dogs?name=${name}`)
+            .then(res => {
+                if(typeof res.data === 'object'){
                     data = {
-                        dogs: response
+                        dogs: res.data,
                     }
                 }else{
                     dispatch({type: NOT_FOUND})
                 }
             })
             .then(() => {
-                fetch('http://localhost:3001/temperament')
-                    .then(response => response.json())
-                    .then(response => {
+                axios.get(`/temperament`)
+                    .then(res => {
                         data = {
                             ...data,
-                            temperaments:response
+                            temperaments: res.data,
                         }
                         dispatch({type: PRELOADED, payload: data})
                     })
                     .catch(err => {
-                        console.log(err);
+                        console.log(err)
                     })
             })
             .catch(err => {
-                dispatch({type:NOT_FOUND})
+                dispatch({type: NOT_FOUND})
             })
     }
 };
 
 export function getDetails(idDog){
     return function(dispatch){
-        return fetch(`http://localhost:3001/dogs/${idDog}`)
-            .then(response => response.json())
-            .then(response => {
-                dispatch({type: DETAILS_DOG , payload: response})
+        return axios.get(`/dogs/${idDog}`)
+            .then(res => {
+                dispatch({type: DETAILS_DOG, payload: res.data})
             })
             .catch(err => {
                 console.log(err);
@@ -61,34 +60,18 @@ export function filterByOrigin(origin) {
     return {type: FILTER_BY_ORIGIN, payload: origin}
 }
 
-export function addDogg  (data){
-    fetch("http://localhost:3001/dog", {
-        method: "post",
-        headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-    })
-    .catch(err => console.log(err));
-}
-
-export const addDog = async (data) => {
+export const addDog  = async (data) => {
     try {
-        const response = await fetch("http://localhost:3001/dog", {
-            method: "post",
-            headers: {
-                Accept: "application/json, text/plain, */*",
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-        });
-        const json = await response.json();
-        return json;
+        const res = await axios({
+            method: 'post',
+            url: `/dog`,
+            data
+        })
+        console.log(res.data);
+        return res.data;
     } catch (error) {
         console.log(error);
     }
-  
 }
 
 

@@ -68,6 +68,7 @@ export default function AddDog() {
             inputCon.life_span !== "" &&
             inputCon.temperaments.length > 0) {
                 // PromiseResult
+
                 addDog(inputCon)
                     .then(result =>{ 
                         if(result === 'llave duplicada viola restricción de unicidad «dogs_name_key»'){
